@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages"
+    "deploy": "gh-pages -d ."
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/D3h4n/Shift-Ciphers/issues"
   },
-  "homepage": "https://d3h4n.github.io/Shift-Ciphers",
+  "homepage": "https://D3h4n.github.io/Shift-Ciphers",
   "dependencies": {
     "gh-pages": "^3.2.3"
   }
