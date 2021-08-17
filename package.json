@@ -1,0 +1,23 @@
+{
+  "name": "shift-ciphers",
+  "version": "1.0.0",
+  "description": "web app for shift ciphers",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/D3h4n/Shift-Ciphers.git"
+  },
+  "author": "D3h4n",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/D3h4n/Shift-Ciphers/issues"
+  },
+  "homepage": "https://d3h4n.github.io/Shift-Ciphers",
+  "dependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}
