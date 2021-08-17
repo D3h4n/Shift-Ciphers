@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="index.js" defer></script>
+  <link rel="stylesheet" href="styles.css"/>
+  <title>Encryption</title>
+</head>
+<body>
+  <section class="row-1">
+    <div class="data-input">
+      <label>Encryption Method:</label>
+      <select id="encryption-select" onchange="handleSelect()" onfocus="handleSelect()">
+        <option value="1" selected>Caesar Cipher</option>
+        <option value="2">My Cipher</option>
+      </select>
+    </div>
+  
+    <div class="data-input">
+      <label>Shift Amount: </label>
+      <input id="encryption-shift-amount" type="number" onchange="setShiftAmount()" value="1"/>
+    </div>
+  </section>
+
+  <section class="row-2">
+    <div class="input-area">
+      <legend>Input</legend>
+      <textarea id="encryption-input" rows="20"></textarea>
+    </div>
+  
+    <div class="buttons">
+      <button onclick="handleEncrypt(true)">Encrypt</button>
+      <button onclick="handleEncrypt(false)">Decrypt</button>
+      <button onclick="handleClear()">Clear</button>
+    </div>
+    
+    <div class="input-area">
+      <legend>Output</legend>
+      <textarea id="encryption-output" spellcheck="false" rows="20" disabled></textarea>
+    </div>
+  </section>
+</body>
+</html>
