@@ -1,35 +1,41 @@
+body {
+  background-color: whitesmoke;
+}
+
 /* Styles for row 1 */
-.row-1{
+.row-1 {
   display: flex;
   justify-content: space-evenly;
   padding: 2rem;
 }
 
-.data-input{
+.data-input {
   display: flex;
   vertical-align: center;
 }
 
-.data-input label{
+.data-input label {
   font-size: larger;
   margin-right: 1rem;
 }
 
 /* Styles for row 2 */
 
-.row-2{
+.row-2 {
   display: flex;
   justify-content: space-evenly;
   vertical-align: center;
 }
 
-.input-area legend{
-  font-size:xx-large;
+.input-area legend {
+  font-size: xx-large;
 }
 
-.input-area textarea{
+.input-area textarea {
   width: 30vw;
   resize: none;
+
+  padding: 2.5%;
 
   font-size: large;
   color: black;
@@ -39,14 +45,14 @@
   background-color: white;
 }
 
-.buttons{
+.buttons {
   display: flex;
   flex-direction: column;
   vertical-align: center;
   justify-content: center;
 }
 
-.buttons button{
+.buttons button {
   width: 10vw;
   height: 10%;
   margin-bottom: 0.75rem;
