@@ -3,8 +3,10 @@ const shift = document.getElementById('encryption-shift-amount'); // shift amoun
 const input = document.getElementById('encryption-input'); // text input area
 const output = document.getElementById('encryption-output'); // text output area
 
-const caesarCharSet = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"]; // character sets for caesar cipher
-const myCharSet = ["qwertyuiop","asdfghjkl","zxcvbnm", "QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"]; // character sets for my cipher
+const caesarCharSet = ["abcdefghijklmnopqrstuvwxyz1234567890"]; // character sets for caesar cipher
+const myCharSet = ["qwertyuiop","asdfghjkl","zxcvbnm", "1234567890"]; // character sets for my cipher
+const A = "A".charCodeAt(0); // value of char 'A'
+const Z = "Z".charCodeAt(0); // value of char 'Z'
 
 let selectedMethod = select.options[select.selectedIndex].value; // enumerated value of character set
 let shiftAmount = Number.parseInt(shift.value); // amount to shift character by
@@ -45,17 +47,20 @@ function handleClear() {
  * @param {bool} direction - direction of encryption (encrypt / decrypt)
  */
 function handleEncrypt(direction) {
+  let cipher;
+
   switch(selectedMethod) {
     case encryptionMethods.ceasarCipher:
-      shiftCipher(caesarCharSet, direction);
+      cipher = shiftCipher(caesarCharSet, direction);
       break;
 
     case encryptionMethods.myCipher:
-      shiftCipher(myCharSet, direction);
+      cipher = shiftCipher(myCharSet, direction);
       break;
   }
-}
 
+  output.value = cipher;
+}
 
 /**
  * Find the charSet and index of input char
@@ -65,13 +70,22 @@ function handleEncrypt(direction) {
  * @returns {number[]} index of charSet and index of char
  */
 function getCharSetIndex(charSets, char) {
+  let isUpper = false;
+  let val = char.charCodeAt(0);
+
+  if (A <= val && val <= Z) {
+    char = char.toLowerCase();
+    isUpper = true;
+  }
+  
+
   for (let i = 0; i < charSets.length; i++) {
     if (charSets[i].includes(char)) {
-      return [i, charSets[i].indexOf(char)];
+      return [i, charSets[i].indexOf(char), isUpper];
     }
   }
 
-  return [-1, -1];
+  return [-1, -1, isUpper];
 }
 
 /**
@@ -83,7 +97,7 @@ function getCharSetIndex(charSets, char) {
  * @param {number} amount - amount to shift by
  * @returns {char} shifted char
  */
-function shiftChar(charSets, charSetIndex, charIndex, amount) {
+function shiftChar(charSets, charSetIndex, charIndex, amount, isUpper) {
   let charSet = charSets[charSetIndex];
   let newCharIndex = (charIndex + amount) % charSet.length;
 
@@ -91,7 +105,13 @@ function shiftChar(charSets, charSetIndex, charIndex, amount) {
     newCharIndex += charSet.length;
   }
 
-  return charSet.charAt(newCharIndex);
+  let newChar = charSet[newCharIndex];
+
+  if (isUpper) {
+    newChar = newChar.toUpperCase();
+  }
+
+  return newChar;
 }
 
 /**
@@ -104,12 +124,12 @@ function shiftCipher(charSets, direction) {
   const arr = input.value.split('');
 
   arr.forEach((char, idx) => {
-    const [charSetIndex, charIndex] = getCharSetIndex(charSets, char);
+    const [charSetIndex, charIndex, isUpper] = getCharSetIndex(charSets, char);
     
     if (charSetIndex != -1) {
-      arr[idx] = shiftChar(charSets, charSetIndex, charIndex, (direction ? shiftAmount : -shiftAmount));
+      arr[idx] = shiftChar(charSets, charSetIndex, charIndex, (direction ? shiftAmount : -shiftAmount), isUpper);
     }
   });
 
-  output.value = arr.join('');
+  return arr.join('');
 }
